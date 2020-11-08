@@ -1,13 +1,12 @@
-//
-//  NSView+Yoga.h
-//  YogaKit
-//
-//  Created by Joseph McBride on 6/17/18.
-//  Copyright © 2018 Outlander. All rights reserved.
-//
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-#import <Cocoa/Cocoa.h>
 #import "YGLayout.h"
+#import <AppKit/AppKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,9 +29,9 @@ typedef void (^YGLayoutConfigurationBlock)(YGLayout *layout);
  to use this method, which uses a single objc_msgSend call.
  */
 - (void)configureLayoutWithBlock:(YGLayoutConfigurationBlock)block
-NS_SWIFT_NAME(configureLayout(block:));
+    NS_SWIFT_NAME(configureLayout(block:));
 
-- (CGSize)sizeThatfits:(CGSize)size;
+- (CGSize)sizeThatFits:(CGSize)size;
 
 @end
 
