@@ -32,6 +32,26 @@ extension ExampleModel: IGListDiffable {
 }
 
 final class ExamplesViewController: UIViewController, IGListAdapterDataSource, IGListSingleSectionControllerDelegate {
+    func listAdapter(_ listAdapter: IGListAdapter, sectionControllerFor object: Any) -> IGListSectionController & IGListSectionType {
+        let sizeBlock: IGListSingleSectionCellSizeBlock = { (model, context) in
+            return CGSize(width: (context?.containerSize.width)!, height: 75.0)
+        }
+
+        let configureBlock: IGListSingleSectionCellConfigureBlock = { (model, cell) in
+            guard let m = model as? ExampleModel, let c = cell as? SingleLabelCollectionCell else {
+                return
+            }
+
+            c.label.text = m.title
+        }
+
+        let sectionController = IGListSingleSectionController(cellClass: SingleLabelCollectionCell.self,
+                                                              configureBlock: configureBlock,
+                                                              sizeBlock: sizeBlock)
+        sectionController.selectionDelegate = self
+        return sectionController
+    }
+    
     private lazy var adapter: IGListAdapter = {
         return IGListAdapter(updater: IGListAdapterUpdater(), viewController: self, workingRangeSize: 0)
     }()
